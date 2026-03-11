@@ -60,6 +60,8 @@ const LINKS = {
     clubgg: "https://clubgg.app.link/reV4p4UPm1b",
     buy: "https://help.send.tg/ru/articles/9819562-%D0%BA%D0%B0%D0%BA-%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C-%D0%BC%D0%BE%D0%BD%D0%B5%D1%82%D1%8B",
     sell: "https://help.send.tg/ru/articles/9819582-%D0%BA%D0%B0%D0%BA-%D0%BF%D1%80%D0%BE%D0%B4%D0%B0%D1%82%D1%8C-%D0%BC%D0%BE%D0%BD%D0%B5%D1%82%D1%8B",
+    register:
+        "https://telegra.ph/%D0%86nstrukc%D1%96ya-z-reyestrac%D1%96i-v-ClubGG-03-10",
     support: null as string | null,
 };
 
@@ -73,7 +75,7 @@ const mainMenuKeyboard = () =>
     new InlineKeyboard()
         .url(t.btn_download, LINKS.clubgg)
         .row()
-        .text(t.btn_register, "register")
+        .url(t.btn_register, LINKS.register)
         .row()
         .text(t.btn_table, "table")
         .row()
@@ -144,14 +146,6 @@ bot.callbackQuery("start", async (ctx) => {
 });
 
 // ── Реєстрація ──
-bot.callbackQuery("register", async (ctx) => {
-    await ctx.answerCallbackQuery();
-    await ctx.editMessageCaption({
-        caption: buildText(t.register_title, t.register_body),
-        parse_mode: "MarkdownV2",
-        reply_markup: backKeyboard(),
-    });
-});
 
 // ── За стіл VISAVI ──
 bot.callbackQuery("table", async (ctx) => {
@@ -291,11 +285,9 @@ bot.catch((err) => {
     }
 })();
 
-
 process.on("SIGINT", async () => {
     console.log("\n🛑 Остановка...");
     await bot.stop();
     console.log("\n🛑 Стоп");
     process.exit(0);
 });
-
