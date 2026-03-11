@@ -162,8 +162,8 @@ bot.callbackQuery("crypto", async (ctx) => {
     await ctx.answerCallbackQuery();
     await ctx.editMessageCaption({
         caption: buildText(t.crypto_title, t.crypto_body),
-        parse_mode: "MarkdownV2",
-        reply_markup: cryptoKeyboard(),
+        parse_mode: "HTML",
+        reply_markup: backKeyboard(),
     });
 });
 
